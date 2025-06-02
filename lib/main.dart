@@ -3,7 +3,7 @@ import 'package:oauth2_client/oauth2_client.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyClient());
 }
 
 class MyOAuthClient extends OAuth2Client {
@@ -28,7 +28,7 @@ final oauthHelper = OAuth2Helper(
 
 );
 
-class MyApp extends StatelessWidget{
+class MyClient extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
   return MaterialApp(
