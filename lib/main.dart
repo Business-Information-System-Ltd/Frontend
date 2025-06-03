@@ -3,7 +3,8 @@ import 'package:oauth2_client/oauth2_client.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
 
 void main() {
-  runApp(MyClient());
+  runApp(MyClient()
+  );
 }
 
 class MyOAuthClient extends OAuth2Client {
@@ -22,8 +23,8 @@ class MyOAuthClient extends OAuth2Client {
 
 final oauthHelper = OAuth2Helper(
   MyOAuthClient(),
-  clientId:'aXWb63EgWPQimLpjLDoR4tYKpWDEUMtLMaJvGmKk',
-  clientSecret:'VW3jIkUkzHWOrz4wo6miXrjPggESAz2h9VPij7XsZmlJK2cTeSoFGhkuYCEgWfLOQJe2VFpcK9oWyCiz3SE8kwZS58uNbSBp3RoB5ai9kqdRIKkC7YN2vaLbdjVB30nI',
+  clientId:'K3PDnpkOeUUvtgFXYmsYNwFP0Xg0oyX1GUJeFboK',
+  clientSecret:'01FXGYbfdIwCIS9U5yp145B3bdVfUMkfeaYMJ0RxtDKSoIMED3Vpw8VZgSoWz3BmiB3RRFZNMu94nxyNxoHawHhPwg7knAd2n73TSmrY6RTEMu5lS7eVw2nOliuiba92',
   scopes:['read','write'],
 
 );
@@ -32,6 +33,7 @@ class MyClient extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
   return MaterialApp(
+    debugShowCheckedModeBanner: false,
     title:'OAuth2 Demo',
     home:LoginPage(),
   
@@ -65,8 +67,10 @@ if(token != null && token.accessToken !=null){
       ),
       body: Center(
         child: ElevatedButton(
+          
           onPressed: ()=> login(context), 
-          child:Text('Login')),
+          child:const Text('Login',style: TextStyle(color: Colors.blue),)
+          ),
       ),
       );
   }
