@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+//import 'package:http/http.dart';
 import 'package:oauth2_client/oauth2_client.dart';
 import 'package:oauth2_client/oauth2_helper.dart';
 
@@ -42,36 +46,82 @@ class MyClient extends StatelessWidget{
 
 }
 
-class LoginPage extends StatelessWidget{
-  void login(BuildContext context) async {
-    var token = await oauthHelper.getToken()
-;
-if(token != null && token.accessToken !=null){
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('Login Successful:${token.accessToken}'),
-    )
-  );
-} 
-  else {
-    ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('Login Failed')),
-    );
-  }
- }
+// class LoginPage extends StatelessWidget{
+//   void login(BuildContext context) async {
+//     var token = await oauthHelper.getToken()
+// ;
+// if(token != null && token.accessToken !=null){
+//   ScaffoldMessenger.of(context).showSnackBar(
+//     SnackBar(content: Text('Login Successful:${token.accessToken}'),
+//     )
+//   );
+// } 
+//   else {
+//     ScaffoldMessenger.of(context).showSnackBar(
+//     SnackBar(content: Text('Login Failed')),
+//     );
+//   }
+//  }
   
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar:AppBar(
+//         title: Text("Login With OAuth 2"),
+//       ),
+//       body: Center(
+//         child: ElevatedButton(
+          
+//           onPressed: ()=> login(context), 
+//           child:const Text('Login',style: TextStyle(color: Colors.blue),)
+//           ),
+//       ),
+//       );
+//   }
+// }
+
+class LoginPage extends StatelessWidget {
+  void login(BuildContext context) async {
+    var token = await oauthHelper.getToken();
+
+    if (token != null && token.accessToken != null) {
+      final response = await http.get(
+        Uri.parse('https://apisecurity-ahabeuhfaqc6h7e0.centralus-01.azurewebsites.net/api/users/profile/'),
+        headers: {
+          'Authorization': 'Bearer ${token.accessToken}',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final role = data['role'];
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login successful! Role: $role')),
+        );
+        // Optional: Navigate to different screen
+        // Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage(role: role)));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to fetch profile')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
-        title: Text("Login With OAuth 2"),
-      ),
+      appBar: AppBar(title: Text("Login With OAuth 2")),
       body: Center(
         child: ElevatedButton(
-          
-          onPressed: ()=> login(context), 
-          child:const Text('Login',style: TextStyle(color: Colors.blue),)
-          ),
+          onPressed: () => login(context),
+          child: Text('Login', style: TextStyle(color: Colors.blue),),
+        ),
       ),
-      );
+    );
   }
 }
