@@ -27,8 +27,8 @@ class MyOAuthClient extends OAuth2Client {
 
 final oauthHelper = OAuth2Helper(
   MyOAuthClient(),
-  clientId:'s60xIpH0GUkINClUnNqqBVMrpih5p4YBDWcknmZ1',
-  clientSecret:'pbkdf2_sha256$1000000$EHwxM0UcG17T5ABCvt2WUU$ipHWc7yXPj2udpmG+aaJDGbrq2qfY6fk/TRVxPjCLSE=',
+  clientId:'ffd7xTPWH9CWVekVUUgyG4uGoy5NjQvyDoeXnUjm',
+  clientSecret:'zDyeOkOsqtSJeJWyAy35AYEuPFhPIig0milof9hnraQVturnmi5yzq1cmm3J4ir8XSPzXESH1l0PMBpyDnupOf3XtUfRAALdAj5SRRAQQBQba8rA2Iai4uIrfuItxYVx',
   scopes:['read','write'],
 
 );
