@@ -17,7 +17,7 @@ class MyOAuthClient extends OAuth2Client {
         authorizeUrl:
             "https://apisecurity-ahabeuhfaqc6h7e0.centralus-01.azurewebsites.net/api/users/o/authorize/",
         tokenUrl:
-            "https://apisecurity-ahabeuhfaqc6h7e0.centralus-01.azurewebsites.net/api/token/",
+            "https://apisecurity-ahabeuhfaqc6h7e0.centralus-01.azurewebsites.net/o/token/",
         redirectUri:
             "https://apisecurity-ahabeuhfaqc6h7e0.centralus-01.azurewebsites.net/api/users/oauth/callback/",
         customUriScheme: '',
